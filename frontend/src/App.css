@@ -1,0 +1,116 @@
+/* App-specific styles - Light Theme */
+.nav-pill {
+  position: relative;
+  z-index: 10;
+}
+
+.nav-pill-active {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  z-index: 0;
+}
+
+/* Card hover effects */
+.experience-card {
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+  transform: scale(1.02);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+/* Background radial glow for light theme */
+.radial-glow {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Profile image styling */
+.profile-image {
+  transition: transform 0.3s ease;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.profile-image:hover {
+  transform: scale(1.02);
+}
+
+/* Tech tag styling */
+.tech-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Logo container - full fill */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sidebar overlay */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 40;
+}
+
+/* Contact bubble */
+.contact-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.contact-bubble:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide Emergent badge */
+[class*="emergent"],
+[data-emergent],
+a[href*="emergent.sh"],
+div[style*="Made with"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
