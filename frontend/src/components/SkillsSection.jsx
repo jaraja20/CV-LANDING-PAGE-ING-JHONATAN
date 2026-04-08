@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { skills, certifications } from '../data/cvData';
 import { 
-  Network, Monitor, Server, Code, Database, Cloud, Wrench, Award
+  Network, Monitor, Server, Code, Database, Cloud, Wrench, Award, Brain
 } from 'lucide-react';
 
 const SkillCard = ({ category, index }) => {
@@ -82,6 +82,13 @@ const CertificationCard = ({ cert, index }) => {
 
 const SkillsSection = () => {
   const skillCategories = [
+    { 
+      id: 'ai', 
+      title: 'Inteligencia Artificial', 
+      icon: Brain, 
+      color: '#EF4444',
+      skills: skills.ai 
+    },
     { 
       id: 'networking', 
       title: 'Redes', 

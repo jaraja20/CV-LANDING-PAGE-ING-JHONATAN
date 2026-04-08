@@ -195,6 +195,15 @@ export const certifications = [
 ];
 
 export const skills = {
+  ai: [
+    "Entrenamiento de modelos locales",
+    "Integración de IA en sistemas y páginas web",
+    "Automatización con IA",
+    "Integración de modelos por APIs (OpenAI, Claude, Gemini)",
+    "Personalización de chatbots",
+    "Procesamiento de lenguaje natural",
+    "n8n con IA"
+  ],
   networking: [
     "Configuración de dispositivos de red (Mikrotik, Cisco, Unifi, Huawei)",
     "Segmentación de redes",
