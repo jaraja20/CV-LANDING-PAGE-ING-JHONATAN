@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { experiences } from '../data/cvData';
-import { X, Calendar, Building2, Briefcase } from 'lucide-react';
+import { X, Calendar, Building2, Briefcase, Info } from 'lucide-react';
 
 const ExperienceCard = ({ exp, index, onClick }) => {
   const ref = useRef(null);
@@ -168,8 +168,48 @@ const ExperienceSection = ({ selectedId, setSelectedId }) => {
                   </div>
                 </div>
 
+                {/* Company & Role Description */}
+                <div className="px-8 md:px-10 pt-6">
+                  {/* Company Description */}
+                  {selectedExperience.companyDescription && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                      className="p-4 rounded-xl mb-4"
+                      style={{ backgroundColor: `${selectedExperience.color}08`, borderLeft: `3px solid ${selectedExperience.color}` }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <Building2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: selectedExperience.color }} />
+                        <div>
+                          <p className="text-sm font-medium text-gray-700 mb-1">Sobre la empresa</p>
+                          <p className="text-sm text-gray-600">{selectedExperience.companyDescription}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Role Description */}
+                  {selectedExperience.roleDescription && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 }}
+                      className="p-4 bg-gray-50 rounded-xl mb-6"
+                    >
+                      <div className="flex items-start gap-3">
+                        <Info className="w-5 h-5 mt-0.5 text-gray-500 flex-shrink-0" />
+                        <div>
+                          <p className="text-sm font-medium text-gray-700 mb-1">Mi rol</p>
+                          <p className="text-sm text-gray-600">{selectedExperience.roleDescription}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+
                 {/* Responsibilities */}
-                <div className="p-8 md:p-10 pt-6">
+                <div className="p-8 md:p-10 pt-0">
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-800">
                     <span 
                       className="w-3 h-3 rounded-full"
@@ -183,7 +223,7 @@ const ExperienceSection = ({ selectedId, setSelectedId }) => {
                         key={index}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 + index * 0.03 }}
+                        transition={{ delay: 0.2 + index * 0.03 }}
                         className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
                       >
                         <span 
