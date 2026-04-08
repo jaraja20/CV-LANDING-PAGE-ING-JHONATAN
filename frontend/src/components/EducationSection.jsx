@@ -1,6 +1,65 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import { education } from '../data/cvData';
 import { X, Calendar, GraduationCap } from 'lucide-react';
+
+const EducationCard = ({ edu, index, onClick }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      layoutId={`edu-card-${edu.id}`}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      data-testid={`card-${edu.id}`}
+      onClick={onClick}
+      className="experience-card cursor-pointer bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group"
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = edu.color;
+        e.currentTarget.style.boxShadow = `0 10px 40px ${edu.color}20`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = '#E5E7EB';
+        e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+      }}
+    >
+      {/* Logo - Round */}
+      <div className="p-6 flex items-center gap-4">
+        <motion.div 
+          layoutId={`edu-logo-${edu.id}`}
+          className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 border-2 bg-white"
+          style={{ 
+            borderColor: `${edu.color}30`
+          }}
+        >
+          {edu.logo ? (
+            <img 
+              src={edu.logo} 
+              alt={edu.institution}
+              className="w-full h-full object-cover rounded-full"
+            />
+          ) : (
+            <GraduationCap className="w-7 h-7" style={{ color: edu.color }} />
+          )}
+        </motion.div>
+
+        <div className="flex-1 min-w-0">
+          <h3 className="text-base font-semibold text-gray-900 group-hover:text-gray-800 transition-colors line-clamp-2">
+            {edu.institution}
+          </h3>
+          <p className="text-gray-600 text-sm mt-0.5">{edu.degree}</p>
+          <p className="mono text-xs text-gray-400 mt-1 flex items-center gap-1">
+            <Calendar className="w-3 h-3" />
+            {edu.period}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const EducationSection = ({ selectedId, setSelectedId }) => {
   const selectedEducation = education.find(edu => edu.id === selectedId);
@@ -10,58 +69,15 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         {education.map((edu, index) => (
-          <motion.div
+          <EducationCard 
             key={edu.id}
-            layoutId={`edu-card-${edu.id}`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            data-testid={`card-${edu.id}`}
+            edu={edu}
+            index={index}
             onClick={() => setSelectedId(edu.id)}
-            className="experience-card cursor-pointer bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group"
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = edu.color;
-              e.currentTarget.style.boxShadow = `0 10px 40px ${edu.color}20`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = '#E5E7EB';
-              e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
-            }}
-          >
-            {/* Logo - Full Width */}
-            <div 
-              className="w-full h-36 logo-container"
-              style={{ backgroundColor: edu.logo ? 'white' : `${edu.color}10` }}
-            >
-              {edu.logo ? (
-                <img 
-                  src={edu.logo} 
-                  alt={edu.institution}
-                  className="w-full h-full object-contain p-2"
-                  style={{ backgroundColor: 'white' }}
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <GraduationCap className="w-12 h-12" style={{ color: edu.color }} />
-                </div>
-              )}
-            </div>
-
-            {/* Content */}
-            <div className="p-5">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1 group-hover:text-gray-800 transition-colors">
-                {edu.institution}
-              </h3>
-              <p className="text-gray-600 text-sm mb-2">{edu.degree}</p>
-              <p className="mono text-xs text-gray-400 flex items-center gap-2">
-                <Calendar className="w-3 h-3" />
-                {edu.period}
-              </p>
-            </div>
-          </motion.div>
+          />
         ))}
       </motion.div>
 
@@ -78,12 +94,23 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
             />
             <motion.div
               layoutId={`edu-card-${selectedId}`}
-              className="fixed inset-4 md:inset-8 lg:inset-20 xl:inset-32 z-50 bg-white rounded-2xl overflow-hidden shadow-2xl"
+              className="fixed inset-4 md:inset-12 lg:inset-20 xl:inset-28 z-50 bg-white rounded-2xl overflow-hidden shadow-2xl"
               data-testid={`modal-edu-${selectedId}`}
             >
-              {/* Background Glow */}
+              {/* Background with Logo as watermark */}
               <div 
-                className="radial-glow"
+                className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                style={{
+                  backgroundImage: selectedEducation.logo ? `url(${selectedEducation.logo})` : 'none',
+                  backgroundSize: '50%',
+                  backgroundPosition: 'right bottom',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
+              
+              {/* Color accent bar */}
+              <div 
+                className="absolute top-0 left-0 w-full h-1"
                 style={{ backgroundColor: selectedEducation.color }}
               />
 
@@ -97,22 +124,23 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
                   <X className="w-5 h-5 text-gray-700" />
                 </button>
 
-                {/* Logo */}
+                {/* Animated Logo */}
                 <motion.div 
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
+                  layoutId={`edu-logo-${selectedId}`}
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: 1 }}
                   transition={{ delay: 0.1 }}
-                  className="w-48 h-48 rounded-2xl flex items-center justify-center overflow-hidden mb-8 shadow-lg"
-                  style={{ backgroundColor: 'white', border: `2px solid ${selectedEducation.color}20` }}
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center overflow-hidden mb-8 shadow-xl border-4 bg-white"
+                  style={{ borderColor: `${selectedEducation.color}30` }}
                 >
                   {selectedEducation.logo ? (
                     <img 
                       src={selectedEducation.logo} 
                       alt={selectedEducation.institution}
-                      className="w-full h-full object-contain p-4"
+                      className="w-full h-full object-cover rounded-full"
                     />
                   ) : (
-                    <GraduationCap className="w-20 h-20" style={{ color: selectedEducation.color }} />
+                    <GraduationCap className="w-16 h-16" style={{ color: selectedEducation.color }} />
                   )}
                 </motion.div>
 
@@ -121,7 +149,7 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-3xl md:text-4xl font-bold mb-4 text-gray-900"
+                  className="text-2xl md:text-3xl font-bold mb-3 text-gray-900 max-w-lg"
                 >
                   {selectedEducation.institution}
                 </motion.h2>
@@ -130,7 +158,7 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="text-xl text-gray-600 mb-6"
+                  className="text-lg text-gray-600 mb-6"
                 >
                   {selectedEducation.degree}
                 </motion.p>
@@ -139,11 +167,11 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full"
                   style={{ backgroundColor: `${selectedEducation.color}10`, color: selectedEducation.color }}
                 >
                   <Calendar className="w-5 h-5" />
-                  <span className="mono text-lg font-medium">{selectedEducation.period}</span>
+                  <span className="mono text-base font-medium">{selectedEducation.period}</span>
                 </motion.div>
               </div>
             </motion.div>

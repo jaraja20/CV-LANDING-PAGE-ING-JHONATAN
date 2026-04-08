@@ -103,3 +103,14 @@
   transform: scale(1.1);
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
 }
+
+/* Hide Emergent badge */
+[class*="emergent"],
+[data-emergent],
+a[href*="emergent.sh"],
+div[style*="Made with"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

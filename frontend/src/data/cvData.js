@@ -14,7 +14,21 @@ export const personalInfo = {
     { name: "Inglés", level: "Nivel alto" },
     { name: "Portugués", level: "Intermedio" }
   ],
-  profilePhoto: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/956jcpvt_image.png"
+  profilePhoto: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/956jcpvt_image.png",
+  references: [
+    {
+      name: "Enzo Bavieris",
+      position: "Site Manager Bitfarms Rio Cuarto",
+      email: "barberis.enzo.21@gmail.com",
+      phone: "+54 358 4184120"
+    },
+    {
+      name: "Luis Centurion",
+      position: "Site Manager General Hive Digital / NyO Tech",
+      email: "luis.centurion@nyotech.com.py",
+      phone: "+595 976155989"
+    }
+  ]
 };
 
 export const experiences = [

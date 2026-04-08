@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Mail, Phone, MapPin, Calendar, Car, Clock, Globe } from 'lucide-react';
+import { X, Mail, Phone, MapPin, Calendar, Car, Clock, Globe, Users } from 'lucide-react';
 import { personalInfo } from '../data/cvData';
 
 const ContactSidebar = ({ isOpen, onClose }) => {
@@ -35,7 +35,7 @@ const ContactSidebar = ({ isOpen, onClose }) => {
             data-testid="contact-sidebar"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-100 p-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-100 p-4 flex items-center justify-between z-10">
               <h2 className="text-lg font-semibold text-gray-900">Información de Contacto</h2>
               <button
                 onClick={onClose}
@@ -94,6 +94,38 @@ const ContactSidebar = ({ isOpen, onClose }) => {
                     <span className="text-sm font-medium text-gray-800">{lang.name}</span>
                     <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full">{lang.level}</span>
                   </div>
+                ))}
+              </div>
+            </div>
+
+            {/* References Section */}
+            <div className="p-4 border-t border-gray-100">
+              <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                <Users className="w-4 h-4" />
+                Referencias Laborales
+              </h3>
+              <div className="space-y-3">
+                {personalInfo.references.map((ref, index) => (
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 + index * 0.1 }}
+                    className="p-4 bg-blue-50 rounded-xl border border-blue-100"
+                  >
+                    <p className="text-sm font-semibold text-gray-900">{ref.name}</p>
+                    <p className="text-xs text-gray-600 mb-2">{ref.position}</p>
+                    <div className="space-y-1">
+                      <a href={`mailto:${ref.email}`} className="flex items-center gap-2 text-xs text-blue-600 hover:text-blue-800">
+                        <Mail className="w-3 h-3" />
+                        {ref.email}
+                      </a>
+                      <a href={`tel:${ref.phone}`} className="flex items-center gap-2 text-xs text-blue-600 hover:text-blue-800">
+                        <Phone className="w-3 h-3" />
+                        {ref.phone}
+                      </a>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
