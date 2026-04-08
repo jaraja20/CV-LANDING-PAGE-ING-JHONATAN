@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import "@/App.css";
 import { motion, AnimatePresence } from "framer-motion";
-import FloatingIcons from "./components/FloatingIcons";
+import CircuitBackground from "./components/CircuitBackground";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import ExperienceSection from "./components/ExperienceSection";
@@ -51,9 +51,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] relative" data-testid="portfolio-app">
-      {/* Floating Background Icons */}
-      <FloatingIcons accentColor={accentColor} />
+    <div className="min-h-screen bg-[#F8FAFC] relative" data-testid="portfolio-app">
+      {/* Circuit Background Pattern */}
+      <CircuitBackground />
 
       {/* Main Content */}
       <div className="relative z-10">
