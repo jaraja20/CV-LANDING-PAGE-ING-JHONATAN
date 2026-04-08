@@ -5,21 +5,21 @@
 @tailwind utilities;
 
 :root {
-  --background: #050505;
-  --surface: #0F0F11;
-  --surface-glass: rgba(5, 5, 5, 0.65);
-  --text-primary: #FFFFFF;
-  --text-secondary: #A1A1AA;
-  --border: #1F1F22;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-glass: rgba(255, 255, 255, 0.85);
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B7280;
+  --border: #E5E7EB;
   
   /* Institution Colors */
-  --color-hive: #E31837;
+  --color-hive: #D4A800;
   --color-bitfarms: #EA7600;
   --color-itaipu: #FCB900;
-  --color-neotelecom: #0055A4;
-  --color-une: #3B598D;
-  --color-santa-teresita: #1e3a5f;
-  --color-iso: #1e40af;
+  --color-neotelecom: #4B0082;
+  --color-une: #2E7D32;
+  --color-santa-teresita: #1A237E;
+  --color-iso: #1565C0;
 }
 
 * {
@@ -94,56 +94,27 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-backdrop-filter: blur(24px);
 }
 
-/* Institution color glows */
-.glow-hive {
-  box-shadow: 0 0 60px rgba(227, 24, 55, 0.15);
-}
-
-.glow-bitfarms {
-  box-shadow: 0 0 60px rgba(234, 118, 0, 0.15);
-}
-
-.glow-itaipu {
-  box-shadow: 0 0 60px rgba(252, 185, 0, 0.15);
-}
-
-.glow-neotelecom {
-  box-shadow: 0 0 60px rgba(0, 85, 164, 0.15);
-}
-
-.glow-une {
-  box-shadow: 0 0 60px rgba(59, 89, 141, 0.15);
-}
-
-.glow-santa-teresita {
-  box-shadow: 0 0 60px rgba(30, 58, 95, 0.15);
-}
-
-.glow-iso {
-  box-shadow: 0 0 60px rgba(30, 64, 175, 0.15);
-}
-
 @layer base {
   :root {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 2%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 63%;
-    --accent: 0 0% 10%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
-    --ring: 0 0% 83%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 10%;
     --radius: 0.5rem;
   }
 }

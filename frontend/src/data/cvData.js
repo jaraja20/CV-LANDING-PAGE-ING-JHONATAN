@@ -13,7 +13,8 @@ export const personalInfo = {
     { name: "Castellano", level: "Nativo" },
     { name: "Inglés", level: "Nivel alto" },
     { name: "Portugués", level: "Intermedio" }
-  ]
+  ],
+  profilePhoto: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/956jcpvt_image.png"
 };
 
 export const experiences = [
@@ -47,9 +48,9 @@ export const experiences = [
     role: "Operaciones de TI Nivel 2",
     period: "Marzo 2025 - Junio 2025",
     sector: "TI",
-    color: "#E31837",
+    color: "#D4A800",
     colorClass: "hive",
-    logo: "https://customer-assets.emergentagent.com/job_250c7eed-3e72-4297-89ff-be4736a34d7e/artifacts/thihnjuj_image.png",
+    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/wq42464t_msedge_4WATEIK0Xz.png",
     description: [
       "Gestión y configuración de componentes en rack",
       "Monitoreo de Sistemas de interconexión (Zabbix)",
@@ -124,36 +125,36 @@ export const education = [
     institution: "Universidad Nacional del Este - Facultad Politécnica",
     degree: "Ingeniería de Sistemas",
     period: "2019 - 2025",
-    color: "#3B598D",
+    color: "#2E7D32",
     colorClass: "une",
-    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/1s83bsgq_image.png"
+    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/khvkdfe2_image.png"
   },
   {
     id: "iso",
     institution: "Seatam Holding - Escuela de Normas ISO",
     degree: "Auditor Líder de ISO 9001:2015",
     period: "2024",
-    color: "#1e40af",
+    color: "#1565C0",
     colorClass: "iso",
-    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/wbyertj1_image.png"
+    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/ybh1prnp_image.png"
   },
   {
     id: "santa-teresita-bach",
     institution: "Colegio Santa Teresita Del Niño Jesús",
     degree: "Bachiller en Ciencias Básicas",
     period: "2016 - 2018",
-    color: "#1e3a5f",
+    color: "#1A237E",
     colorClass: "santa-teresita",
-    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/w9u9zlk9_image.png"
+    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/kms89ex6_image.png"
   },
   {
     id: "santa-teresita-bas",
     institution: "Colegio Santa Teresita Del Niño Jesús",
     degree: "Escolar Básica",
     period: "2004 - 2015",
-    color: "#1e3a5f",
+    color: "#1A237E",
     colorClass: "santa-teresita",
-    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/w9u9zlk9_image.png"
+    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/kms89ex6_image.png"
   }
 ];
 

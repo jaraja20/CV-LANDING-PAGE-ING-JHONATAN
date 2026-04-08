@@ -1,6 +1,6 @@
 import { Briefcase, GraduationCap, Code, Server, Database, Network, Shield } from 'lucide-react';
 
-const FloatingIcons = () => {
+const FloatingIcons = ({ accentColor }) => {
   const icons = [
     { Icon: Briefcase, className: "floating-icon", style: { top: '15%', left: '3%' } },
     { Icon: GraduationCap, className: "floating-icon-delayed", style: { top: '35%', left: '5%' } },
@@ -21,8 +21,9 @@ const FloatingIcons = () => {
           style={item.style}
         >
           <item.Icon 
-            className="w-8 h-8 text-white opacity-[0.03]" 
+            className="w-8 h-8 opacity-[0.07]" 
             strokeWidth={1}
+            style={{ color: accentColor || '#9CA3AF' }}
           />
         </div>
       ))}

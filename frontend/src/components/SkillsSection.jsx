@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
 import { skills, certifications } from '../data/cvData';
 import { 
-  Network, Monitor, Server, Code, Database, Cloud, Wrench, Award,
-  Wifi, Shield, Terminal, Globe, Cpu, HardDrive
+  Network, Monitor, Server, Code, Database, Cloud, Wrench, Award
 } from 'lucide-react';
 
 const SkillsSection = () => {
@@ -89,14 +88,14 @@ const SkillsSection = () => {
               key={category.id}
               variants={itemVariants}
               data-testid={`skill-card-${category.id}`}
-              className="bg-[#0F0F11] border border-[#1F1F22] rounded-xl p-6 hover:border-opacity-50 transition-all duration-300 group"
+              className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group"
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = category.color;
-                e.currentTarget.style.boxShadow = `0 0 40px ${category.color}15`;
+                e.currentTarget.style.boxShadow = `0 10px 40px ${category.color}15`;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = '#1F1F22';
-                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = '#E5E7EB';
+                e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
               }}
             >
               {/* Header */}
@@ -107,7 +106,7 @@ const SkillsSection = () => {
                 >
                   <Icon className="w-5 h-5" style={{ color: category.color }} />
                 </div>
-                <h3 className="text-lg font-semibold">{category.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-900">{category.title}</h3>
               </div>
 
               {/* Skills List */}
@@ -115,7 +114,7 @@ const SkillsSection = () => {
                 {category.skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1.5 bg-white/5 rounded-lg text-xs text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+                    className="px-3 py-1.5 bg-gray-50 rounded-lg text-xs text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors border border-gray-100"
                   >
                     {skill}
                   </span>
@@ -133,8 +132,8 @@ const SkillsSection = () => {
         transition={{ delay: 0.5 }}
         data-testid="certifications-section"
       >
-        <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-          <Award className="w-6 h-6 text-yellow-500" />
+        <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-900">
+          <Award className="w-6 h-6 text-amber-500" />
           Certificaciones
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -144,17 +143,17 @@ const SkillsSection = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6 + index * 0.05 }}
-              className="p-4 bg-[#0F0F11] border border-[#1F1F22] rounded-xl hover:border-yellow-500/30 transition-colors group"
+              className="p-4 bg-white border border-gray-200 rounded-xl hover:border-amber-300 hover:shadow-md transition-all duration-300 group"
             >
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
-                  <Award className="w-4 h-4 text-yellow-500" />
+                <div className="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center flex-shrink-0">
+                  <Award className="w-5 h-5 text-amber-500" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-white group-hover:text-yellow-400 transition-colors">
+                  <p className="text-sm font-medium text-gray-800 group-hover:text-amber-700 transition-colors">
                     {cert.name}
                   </p>
-                  <p className="mono text-xs text-zinc-500 mt-1">{cert.date}</p>
+                  <p className="mono text-xs text-gray-400 mt-1">{cert.date}</p>
                 </div>
               </div>
             </motion.div>

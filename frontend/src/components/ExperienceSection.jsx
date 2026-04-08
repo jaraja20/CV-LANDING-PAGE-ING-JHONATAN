@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { experiences, backgroundImages } from '../data/cvData';
+import { experiences } from '../data/cvData';
 import { X, Calendar, Building2, Briefcase } from 'lucide-react';
 
 const ExperienceSection = ({ selectedId, setSelectedId }) => {
@@ -21,55 +21,49 @@ const ExperienceSection = ({ selectedId, setSelectedId }) => {
             transition={{ delay: index * 0.1 }}
             data-testid={`card-${exp.id}`}
             onClick={() => setSelectedId(exp.id)}
-            className="experience-card cursor-pointer bg-[#0F0F11] border border-[#1F1F22] rounded-xl p-6 hover:border-opacity-50 transition-all duration-300 group"
-            style={{
-              '--hover-color': exp.color,
-            }}
+            className="experience-card cursor-pointer bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group"
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = exp.color;
-              e.currentTarget.style.boxShadow = `0 0 40px ${exp.color}20`;
+              e.currentTarget.style.boxShadow = `0 10px 40px ${exp.color}20`;
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = '#1F1F22';
-              e.currentTarget.style.boxShadow = 'none';
+              e.currentTarget.style.borderColor = '#E5E7EB';
+              e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
             }}
           >
-            {/* Logo */}
-            <div className="flex items-start justify-between mb-4">
-              <div 
-                className="w-14 h-14 rounded-xl flex items-center justify-center overflow-hidden"
-                style={{ backgroundColor: `${exp.color}15` }}
-              >
-                {exp.logo ? (
-                  <img 
-                    src={exp.logo} 
-                    alt={exp.company}
-                    className="w-full h-full object-contain p-2"
-                  />
-                ) : (
-                  <Briefcase className="w-6 h-6" style={{ color: exp.color }} />
-                )}
-              </div>
-              <span 
-                className="mono text-xs px-3 py-1 rounded-full"
-                style={{ backgroundColor: `${exp.color}15`, color: exp.color }}
-              >
-                {exp.sector}
-              </span>
+            {/* Logo - Full Width */}
+            <div 
+              className="w-full h-32 logo-container"
+              style={{ backgroundColor: `${exp.color}10` }}
+            >
+              {exp.logo ? (
+                <img 
+                  src={exp.logo} 
+                  alt={exp.company}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <Briefcase className="w-12 h-12" style={{ color: exp.color }} />
+                </div>
+              )}
             </div>
 
             {/* Content */}
-            <h3 className="text-lg font-semibold mb-1 group-hover:text-white transition-colors">
-              {exp.company}
-            </h3>
-            <p className="text-zinc-400 text-sm mb-3">{exp.role}</p>
-            <p className="mono text-xs text-zinc-500">{exp.period}</p>
-
-            {/* Preview of tasks */}
-            <div className="mt-4 pt-4 border-t border-[#1F1F22]">
-              <p className="text-zinc-500 text-sm line-clamp-2">
-                {exp.description[0]}
-              </p>
+            <div className="p-5">
+              <div className="flex items-start justify-between mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-800 transition-colors">
+                  {exp.company}
+                </h3>
+                <span 
+                  className="mono text-xs px-2 py-1 rounded-full"
+                  style={{ backgroundColor: `${exp.color}15`, color: exp.color }}
+                >
+                  {exp.sector}
+                </span>
+              </div>
+              <p className="text-gray-600 text-sm mb-2">{exp.role}</p>
+              <p className="mono text-xs text-gray-400">{exp.period}</p>
             </div>
           </motion.div>
         ))}
@@ -83,12 +77,12 @@ const ExperienceSection = ({ selectedId, setSelectedId }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50"
               onClick={() => setSelectedId(null)}
             />
             <motion.div
               layoutId={`card-${selectedId}`}
-              className="fixed inset-4 md:inset-8 lg:inset-16 z-50 bg-[#050505] rounded-2xl overflow-hidden"
+              className="fixed inset-4 md:inset-8 lg:inset-16 z-50 bg-white rounded-2xl overflow-hidden shadow-2xl"
               data-testid={`modal-${selectedId}`}
             >
               {/* Background Glow */}
@@ -96,86 +90,72 @@ const ExperienceSection = ({ selectedId, setSelectedId }) => {
                 className="radial-glow"
                 style={{ backgroundColor: selectedExperience.color }}
               />
-              
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0 opacity-10"
-                style={{
-                  backgroundImage: `url(${backgroundImages.orange})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  maskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)'
-                }}
-              />
 
-              <div className="relative h-full overflow-y-auto p-8 md:p-12">
-                {/* Close Button */}
-                <button
-                  data-testid="close-modal-btn"
-                  onClick={() => setSelectedId(null)}
-                  className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+              <div className="relative h-full overflow-y-auto">
+                {/* Header with Logo */}
+                <div 
+                  className="h-48 md:h-64 logo-container relative"
+                  style={{ backgroundColor: `${selectedExperience.color}10` }}
                 >
-                  <X className="w-5 h-5" />
-                </button>
-
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-start gap-6 mb-8">
-                  <div 
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center overflow-hidden flex-shrink-0"
-                    style={{ backgroundColor: `${selectedExperience.color}20` }}
+                  {selectedExperience.logo && (
+                    <img 
+                      src={selectedExperience.logo} 
+                      alt={selectedExperience.company}
+                      className="w-full h-full object-cover opacity-90"
+                    />
+                  )}
+                  {/* Close Button */}
+                  <button
+                    data-testid="close-modal-btn"
+                    onClick={() => setSelectedId(null)}
+                    className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition-colors shadow-lg"
                   >
-                    {selectedExperience.logo ? (
-                      <img 
-                        src={selectedExperience.logo} 
-                        alt={selectedExperience.company}
-                        className="w-full h-full object-contain p-3"
-                      />
-                    ) : (
-                      <Briefcase className="w-10 h-10" style={{ color: selectedExperience.color }} />
-                    )}
-                  </div>
-                  <div>
-                    <h2 className="text-3xl md:text-4xl font-bold mb-2">{selectedExperience.company}</h2>
-                    <p className="text-xl text-zinc-300 mb-4">{selectedExperience.role}</p>
-                    <div className="flex flex-wrap gap-4">
-                      <span className="flex items-center gap-2 text-zinc-400">
-                        <Calendar className="w-4 h-4" />
-                        {selectedExperience.period}
-                      </span>
-                      <span className="flex items-center gap-2 text-zinc-400">
-                        <Building2 className="w-4 h-4" />
-                        {selectedExperience.sector}
-                      </span>
-                    </div>
-                  </div>
+                    <X className="w-5 h-5 text-gray-700" />
+                  </button>
                 </div>
 
-                {/* Responsibilities */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                    <span 
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: selectedExperience.color }}
-                    />
-                    Responsabilidades
-                  </h3>
-                  <ul className="grid gap-3">
-                    {selectedExperience.description.map((item, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05 }}
-                        className="flex items-start gap-3 p-4 bg-white/5 rounded-xl"
-                      >
-                        <span 
-                          className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
-                          style={{ backgroundColor: selectedExperience.color }}
-                        />
-                        <span className="text-zinc-300">{item}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+                {/* Content */}
+                <div className="p-8 md:p-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-2 text-gray-900">{selectedExperience.company}</h2>
+                  <p className="text-xl text-gray-600 mb-4">{selectedExperience.role}</p>
+                  <div className="flex flex-wrap gap-4 mb-8">
+                    <span className="flex items-center gap-2 text-gray-500 text-sm">
+                      <Calendar className="w-4 h-4" />
+                      {selectedExperience.period}
+                    </span>
+                    <span className="flex items-center gap-2 text-gray-500 text-sm">
+                      <Building2 className="w-4 h-4" />
+                      {selectedExperience.sector}
+                    </span>
+                  </div>
+
+                  {/* Responsibilities */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-gray-800">
+                      <span 
+                        className="w-3 h-3 rounded-full"
+                        style={{ backgroundColor: selectedExperience.color }}
+                      />
+                      Responsabilidades
+                    </h3>
+                    <ul className="grid gap-3">
+                      {selectedExperience.description.map((item, index) => (
+                        <motion.li
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                          className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl"
+                        >
+                          <span 
+                            className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
+                            style={{ backgroundColor: selectedExperience.color }}
+                          />
+                          <span className="text-gray-700">{item}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </motion.div>

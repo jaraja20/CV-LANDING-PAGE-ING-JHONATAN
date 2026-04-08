@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import "@/App.css";
 import { motion, AnimatePresence } from "framer-motion";
 import FloatingIcons from "./components/FloatingIcons";
@@ -7,11 +7,25 @@ import Hero from "./components/Hero";
 import ExperienceSection from "./components/ExperienceSection";
 import EducationSection from "./components/EducationSection";
 import SkillsSection from "./components/SkillsSection";
+import ContactBubble from "./components/ContactBubble";
+import ContactSidebar from "./components/ContactSidebar";
+
+// Accent colors for each section
+const sectionColors = {
+  formacion: '#2E7D32', // Green from UNE
+  experiencia: '#0055A4', // Blue from Neotelecom
+  habilidades: '#8B5CF6', // Purple for skills
+};
 
 function App() {
   const [activeSection, setActiveSection] = useState("experiencia");
   const [selectedExpId, setSelectedExpId] = useState(null);
   const [selectedEduId, setSelectedEduId] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const accentColor = useMemo(() => {
+    return sectionColors[activeSection] || '#3B82F6';
+  }, [activeSection]);
 
   const renderSection = () => {
     switch (activeSection) {
@@ -37,9 +51,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] relative" data-testid="portfolio-app">
+    <div className="min-h-screen bg-[#FAFAFA] relative" data-testid="portfolio-app">
       {/* Floating Background Icons */}
-      <FloatingIcons />
+      <FloatingIcons accentColor={accentColor} />
 
       {/* Main Content */}
       <div className="relative z-10">
@@ -50,6 +64,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-6">
           <Navigation 
             activeSection={activeSection} 
+            accentColor={accentColor}
             setActiveSection={(section) => {
               setActiveSection(section);
               setSelectedExpId(null);
@@ -73,10 +88,22 @@ function App() {
         </div>
       </div>
 
+      {/* Contact Bubble */}
+      <ContactBubble 
+        onClick={() => setIsSidebarOpen(true)} 
+        accentColor={accentColor}
+      />
+
+      {/* Contact Sidebar */}
+      <ContactSidebar 
+        isOpen={isSidebarOpen} 
+        onClose={() => setIsSidebarOpen(false)} 
+      />
+
       {/* Footer */}
-      <footer className="relative z-10 border-t border-[#1F1F22] py-8">
+      <footer className="relative z-10 border-t border-gray-200 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-zinc-500 text-sm">
+          <p className="text-gray-500 text-sm">
             © 2025 Jhonatan Villalba • Ingeniero de Sistemas
           </p>
         </div>
