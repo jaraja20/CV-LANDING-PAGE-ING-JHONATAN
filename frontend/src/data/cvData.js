@@ -38,9 +38,10 @@ export const experiences = [
     role: "Operador de Calidad de Red",
     period: "Julio 2025 - Actualidad",
     sector: "NOC/Infraestructura",
-    color: "#0055A4",
+    color: "#C020C0",
     colorClass: "neotelecom",
-    logo: "https://customer-assets.emergentagent.com/job_250c7eed-3e72-4297-89ff-be4736a34d7e/artifacts/7a1jj027_image.png",
+    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/fagawr7d_image.png",
+    logoBackground: "https://customer-assets.emergentagent.com/job_250c7eed-3e72-4297-89ff-be4736a34d7e/artifacts/7a1jj027_image.png",
     description: [
       "Gestión y configuración de componentes en rack",
       "Montaje de rack",
@@ -64,7 +65,8 @@ export const experiences = [
     sector: "TI",
     color: "#D4A800",
     colorClass: "hive",
-    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/wq42464t_msedge_4WATEIK0Xz.png",
+    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/7x7ihsz4_Gemini_Generated_Image_z5ekgwz5ekgwz5ek.png",
+    logoBackground: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/27bfplhd_HIVE%20Blockchain%20Technologies%20Symbol%20SVG.svg",
     description: [
       "Gestión y configuración de componentes en rack",
       "Monitoreo de Sistemas de interconexión (Zabbix)",
@@ -84,7 +86,8 @@ export const experiences = [
     sector: "TI",
     color: "#EA7600",
     colorClass: "bitfarms",
-    logo: "https://customer-assets.emergentagent.com/job_250c7eed-3e72-4297-89ff-be4736a34d7e/artifacts/q0rwbl2v_image.png",
+    logo: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/14yct14h_Bitfarms%20Logo%20SVG.svg",
+    logoBackground: "https://customer-assets.emergentagent.com/job_dynamic-resume-36/artifacts/ugyqmiba_Bitfarms%20Symbol%20SVG.svg",
     description: [
       "Gestión y configuración de componentes en rack",
       "Monitoreo de Sistemas de interconexión (Zabbix)",

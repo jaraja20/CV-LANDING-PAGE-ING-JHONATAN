@@ -10,7 +10,6 @@ const ExperienceCard = ({ exp, index, onClick }) => {
   return (
     <motion.div
       ref={ref}
-      layoutId={`card-${exp.id}`}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
@@ -28,11 +27,9 @@ const ExperienceCard = ({ exp, index, onClick }) => {
     >
       {/* Logo - Round */}
       <div className="p-6 flex items-center gap-4">
-        <motion.div 
-          layoutId={`logo-${exp.id}`}
-          className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 border-2"
+        <div 
+          className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 border-2 bg-white"
           style={{ 
-            backgroundColor: `${exp.color}10`,
             borderColor: `${exp.color}30`
           }}
         >
@@ -40,12 +37,12 @@ const ExperienceCard = ({ exp, index, onClick }) => {
             <img 
               src={exp.logo} 
               alt={exp.company}
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-contain p-1"
             />
           ) : (
             <Briefcase className="w-7 h-7" style={{ color: exp.color }} />
           )}
-        </motion.div>
+        </div>
 
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
@@ -88,7 +85,7 @@ const ExperienceSection = ({ selectedId, setSelectedId }) => {
       </motion.div>
 
       {/* Modal */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {selectedId && selectedExperience && (
           <>
             <motion.div
@@ -99,16 +96,19 @@ const ExperienceSection = ({ selectedId, setSelectedId }) => {
               onClick={() => setSelectedId(null)}
             />
             <motion.div
-              layoutId={`card-${selectedId}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
               className="fixed inset-4 md:inset-8 lg:inset-12 z-50 bg-white rounded-2xl overflow-hidden shadow-2xl"
               data-testid={`modal-${selectedId}`}
             >
-              {/* Background with Logo as watermark */}
+              {/* Background with logoBackground or logo as watermark */}
               <div 
-                className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                className="absolute inset-0 opacity-[0.06] pointer-events-none"
                 style={{
-                  backgroundImage: selectedExperience.logo ? `url(${selectedExperience.logo})` : 'none',
-                  backgroundSize: '60%',
+                  backgroundImage: `url(${selectedExperience.logoBackground || selectedExperience.logo})`,
+                  backgroundSize: '40%',
                   backgroundPosition: 'right bottom',
                   backgroundRepeat: 'no-repeat',
                 }}
@@ -124,12 +124,10 @@ const ExperienceSection = ({ selectedId, setSelectedId }) => {
                 {/* Header */}
                 <div className="p-8 md:p-10 pb-0">
                   <div className="flex items-start gap-6">
-                    {/* Animated Logo */}
-                    <motion.div 
-                      layoutId={`logo-${selectedId}`}
-                      className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 border-3 shadow-lg"
+                    {/* Logo */}
+                    <div 
+                      className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 border-3 shadow-lg bg-white"
                       style={{ 
-                        backgroundColor: 'white',
                         borderColor: selectedExperience.color
                       }}
                     >
@@ -137,12 +135,12 @@ const ExperienceSection = ({ selectedId, setSelectedId }) => {
                         <img 
                           src={selectedExperience.logo} 
                           alt={selectedExperience.company}
-                          className="w-full h-full object-cover rounded-full"
+                          className="w-full h-full object-contain p-2"
                         />
                       ) : (
                         <Briefcase className="w-10 h-10" style={{ color: selectedExperience.color }} />
                       )}
-                    </motion.div>
+                    </div>
 
                     <div className="flex-1 pt-2">
                       <h2 className="text-2xl md:text-3xl font-bold text-gray-900">{selectedExperience.company}</h2>

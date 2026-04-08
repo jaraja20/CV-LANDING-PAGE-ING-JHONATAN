@@ -10,7 +10,6 @@ const EducationCard = ({ edu, index, onClick }) => {
   return (
     <motion.div
       ref={ref}
-      layoutId={`edu-card-${edu.id}`}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
@@ -28,8 +27,7 @@ const EducationCard = ({ edu, index, onClick }) => {
     >
       {/* Logo - Round */}
       <div className="p-6 flex items-center gap-4">
-        <motion.div 
-          layoutId={`edu-logo-${edu.id}`}
+        <div 
           className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 border-2 bg-white"
           style={{ 
             borderColor: `${edu.color}30`
@@ -39,12 +37,12 @@ const EducationCard = ({ edu, index, onClick }) => {
             <img 
               src={edu.logo} 
               alt={edu.institution}
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-contain p-1"
             />
           ) : (
             <GraduationCap className="w-7 h-7" style={{ color: edu.color }} />
           )}
-        </motion.div>
+        </div>
 
         <div className="flex-1 min-w-0">
           <h3 className="text-base font-semibold text-gray-900 group-hover:text-gray-800 transition-colors line-clamp-2">
@@ -82,7 +80,7 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
       </motion.div>
 
       {/* Modal */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {selectedId && selectedEducation && (
           <>
             <motion.div
@@ -93,16 +91,19 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
               onClick={() => setSelectedId(null)}
             />
             <motion.div
-              layoutId={`edu-card-${selectedId}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
               className="fixed inset-4 md:inset-12 lg:inset-20 xl:inset-28 z-50 bg-white rounded-2xl overflow-hidden shadow-2xl"
               data-testid={`modal-edu-${selectedId}`}
             >
               {/* Background with Logo as watermark */}
               <div 
-                className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                className="absolute inset-0 opacity-[0.06] pointer-events-none"
                 style={{
                   backgroundImage: selectedEducation.logo ? `url(${selectedEducation.logo})` : 'none',
-                  backgroundSize: '50%',
+                  backgroundSize: '40%',
                   backgroundPosition: 'right bottom',
                   backgroundRepeat: 'no-repeat',
                 }}
@@ -124,12 +125,11 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
                   <X className="w-5 h-5 text-gray-700" />
                 </button>
 
-                {/* Animated Logo */}
+                {/* Logo */}
                 <motion.div 
-                  layoutId={`edu-logo-${selectedId}`}
-                  initial={{ scale: 0.8 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.1 }}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.3 }}
                   className="w-32 h-32 md:w-40 md:h-40 rounded-full flex items-center justify-center overflow-hidden mb-8 shadow-xl border-4 bg-white"
                   style={{ borderColor: `${selectedEducation.color}30` }}
                 >
@@ -137,7 +137,7 @@ const EducationSection = ({ selectedId, setSelectedId }) => {
                     <img 
                       src={selectedEducation.logo} 
                       alt={selectedEducation.institution}
-                      className="w-full h-full object-cover rounded-full"
+                      className="w-full h-full object-contain p-3"
                     />
                   ) : (
                     <GraduationCap className="w-16 h-16" style={{ color: selectedEducation.color }} />
