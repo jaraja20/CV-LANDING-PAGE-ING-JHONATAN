@@ -3,6 +3,14 @@
 ## Original Problem Statement
 Crear una landing page que funcione como un CV interactuable, que pueda mostrar de manera dinámica toda la información y que todo sea super profesional, con muchas animaciones de movimientos suaves. Estructura con 3 apartados principales: Formación, Experiencia Laboral, Habilidades y Certificados. Items interactuables que al seleccionar se despliegue la información fullpage.
 
+## Iteración 2 - Cambios Solicitados (Diciembre 2025)
+- ✅ Tema claro (blancos) en lugar de oscuro
+- ✅ Foto personal de Jhonatan centrada mostrando la cara
+- ✅ Botón flotante tipo burbuja que abre sidebar con info de contacto
+- ✅ Logos a campo completo sin espacios
+- ✅ Colores dinámicos por sección (verde para formación, azul para experiencia, púrpura para habilidades)
+- ✅ Nuevos logos de instituciones educativas actualizados
+
 ## User Personas
 - **Reclutadores/RRHH**: Buscan evaluar rápidamente las habilidades y experiencia del candidato
 - **Empresas de tecnología**: Interesados en el perfil técnico y experiencia en redes/infraestructura
