@@ -1,0 +1,95 @@
+{
+  "theme": "dark",
+  "archetype": "5",
+  "archetype_name": "Jewel & Luxury / Cinematic Tech",
+  "design_philosophy": "E1 - Anti-AI Designer. Deep, immersive dark mode focusing on 'Cinematic Tech'. Generous spacing, tension through asymmetry, and emotional direction through specific institution colors illuminating the dark void.",
+  "colors": {
+    "background": "#050505",
+    "surface": "#0F0F11",
+    "surface_glass": "rgba(5, 5, 5, 0.65)",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "border": "#1F1F22",
+    "institutions": {
+      "hive_digital": "#E31837",
+      "bitfarms": "#EA7600",
+      "itaipu": "#FCB900",
+      "neotelecom": "#0055A4",
+      "fp_une": "#3B598D",
+      "santa_teresita": "#87CEEB",
+      "iso": "#C8102E"
+    }
+  },
+  "typography": {
+    "fonts_to_import": [
+      "Outfit:wght@300;400;500;600;700",
+      "Manrope:wght@300;400;500;600",
+      "JetBrains+Mono:wght@400;500"
+    ],
+    "headings": {
+      "family": "'Outfit', sans-serif",
+      "weight": "font-medium to font-bold",
+      "tracking": "tracking-tight",
+      "sizes": {
+        "h1": "text-5xl sm:text-6xl+",
+        "h2": "text-3xl sm:text-4xl",
+        "h3": "text-xl sm:text-2xl"
+      }
+    },
+    "body": {
+      "family": "'Manrope', sans-serif",
+      "weight": "font-normal",
+      "size": "text-base",
+      "color": "text-zinc-400"
+    },
+    "mono": {
+      "family": "'JetBrains Mono', monospace",
+      "usage": "Overlines, tech tags, dates",
+      "style": "uppercase tracking-[0.2em] text-xs"
+    }
+  },
+  "layout": {
+    "grid_system": "Bento Grid Mode A (Tetris Grid). grid-cols-1 md:grid-cols-8 lg:grid-cols-12. Avoid perfect symmetry.",
+    "spacing": "Generous. Use p-8, p-12. gap-8 to gap-12 between main sections.",
+    "container": "max-w-7xl mx-auto px-6"
+  },
+  "surfaces": {
+    "navigation": "Crystal Glass: backdrop-blur-2xl bg-black/60 border-b border-white/10. Sticky top-center.",
+    "cards": "Technical Neumorphism: bg-[#0F0F11] border border-[#1F1F22]. Inner padding p-8. No rounded-3xl (use rounded-xl or sharp edges).",
+    "card_hover": "Inject institution color as a subtle glowing radial-gradient (15% opacity) + border color shift.",
+    "expanded_modal": "Solid background matching #050505 but with a massive, diffuse radial glow of the institution's color in the top-right corner."
+  },
+  "animations": {
+    "library": "framer-motion",
+    "page_transitions": "Staggered fade-up for grid items. Use layoutId for card expansion.",
+    "interactions": "Cards scale to 1.02 on hover. Smooth color transitions (duration-300).",
+    "background_elements": "Floating lucide-react icons (Briefcase, GraduationCap, Code) in the far left/right gutters. Opacity 5%, extremely slow infinite Y-axis translation."
+  },
+  "components_instructions": {
+    "hero": "Left-aligned content. Massive H1 for Jhonatan Villalba. 'Ingeniero de Sistemas' in JetBrains Mono. Use the profile image with a sleek grayscale filter and a subtle glowing border.",
+    "navigation": "3 Top-center buttons ('Formación', 'Experiencia', 'Habilidades'). Must not use generic Shadcn Tabs; build a custom floating pill menu with Framer Motion active background pill.",
+    "dynamic_grid": "The area below the hero toggles content based on the nav selection. Animate the entrance of the Bento grid cards.",
+    "experience_cards": "Include the company name, role, and dates. Apply the specific hex color to the hover state and the expanded full-page state.",
+    "education_cards": "Same pattern as experience. Emphasize the institutional colors (UNE, Santa Teresita, ISO).",
+    "skills_section": "Bento cells containing densely packed, monochromatic tech icons. On hover, they illuminate with their brand colors.",
+    "fullpage_modal": "When clicked, the card uses Framer Motion layoutId to become a fixed, full-screen overlay (z-50). It contains deep details, an immersive background (use the provided generated tech images), and a prominent 'Close' or 'Back' button."
+  },
+  "media": {
+    "profile_image": "https://images.unsplash.com/photo-1764546373114-2d7a87221733?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBzb2Z0d2FyZSUyMGVuZ2luZWVyJTIwcG9ydHJhaXQlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzU2NDU5ODJ8MA&ixlib=rb-4.1.0&q=85",
+    "backgrounds": {
+      "tech_abstract_orange": "https://static.prod-images.emergentagent.com/jobs/250c7eed-3e72-4297-89ff-be4736a34d7e/images/b94934b957dae090274ec1a9a95245ad87b693734164ad587a89a92a5e1ac593.png",
+      "tech_abstract_blue": "https://static.prod-images.emergentagent.com/jobs/250c7eed-3e72-4297-89ff-be4736a34d7e/images/0bfe7831737a6483e6b50d4536d8ccccc4ed7c8c6b73102e0bd9aac2bf0de083.png"
+    }
+  },
+  "testing": {
+    "data_testid_rules": "All interactive elements MUST have data-testid. e.g., 'nav-btn-experiencia', 'card-hive-digital', 'close-modal-btn'."
+  },
+  "instructions_to_main_agent": [
+    "You MUST use pure HTML/Tailwind and framer-motion for the main interactive Bento Grid to achieve the requested fullpage expansion effect. Do not use restrictive Shadcn wrappers for these cards.",
+    "Use 'framer-motion' layoutId to smoothly transition a clicked card into a full-screen view.",
+    "Integrate the generated background images into the expanded full-page views, setting them to low opacity (10-20%) with a mask-image to fade into the dark background.",
+    "Ensure 'Outfit', 'Manrope', and 'JetBrains Mono' are imported via Google Fonts in index.css.",
+    "Add floating icons in the background (using lucide-react) that animate slowly to give the 'fondos laterales mostrando iconos' effect requested by the user.",
+    "Strictly follow the color mapping for each institution to dynamically theme the cards and modals upon interaction."
+  ]
+}
