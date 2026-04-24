@@ -33,6 +33,32 @@ export const personalInfo = {
 
 export const experiences = [
   {
+    id: "electrogrupo",
+    company: "Electrogrupo SACI",
+    role: "Encargado IT",
+    period: "Abril 2026 - Actualidad",
+    sector: "Gestión IT",
+    color: "#E30613",
+    colorClass: "electrogrupo",
+    logo: "https://customer-assets.emergentagent.com/job_repo-builder-67/artifacts/gpu36gtq_image.png",
+    logoBackground: "https://customer-assets.emergentagent.com/job_repo-builder-67/artifacts/gpu36gtq_image.png",
+    companyDescription: "Empresa paraguaya especializada en instalaciones eléctricas e irrigación, con soluciones integrales para proyectos industriales, comerciales y agrícolas a nivel nacional.",
+    roleDescription: "Responsable del área de Tecnologías de la Información, liderando la gestión integral de infraestructura, ERP, servidores, redes, ciberseguridad, desarrollo web y soporte técnico de la empresa.",
+    description: [
+      "Administración y gestión del ERP Dolphin",
+      "Gestión del sistema MRP Datapar",
+      "Administración de Asustor como gestor de datos en la nube",
+      "cPanel para gestión de correos empresariales y despliegue de páginas web bajo dominio propio",
+      "Gestión y configuración de dispositivos de red (Mikrotik, TP-Link)",
+      "Gestión de servidores locales y de servicios Datapar",
+      "Configuración de routers TP-Link y Access Points Unifi",
+      "Desarrollo de página web corporativa",
+      "Instalación de infraestructura de red y soporte",
+      "Monitoreo y configuración de cámaras mediante SmartPSS Admin (DVR, NVR, XVR)",
+      "Soporte técnico de dispositivos e impresoras"
+    ]
+  },
+  {
     id: "neotelecom",
     company: "Neotelecom",
     role: "Operador de Calidad de Red",
@@ -205,36 +231,53 @@ export const skills = {
     "n8n con IA"
   ],
   networking: [
-    "Configuración de dispositivos de red (Mikrotik, Cisco, Unifi, Huawei)",
+    "Configuración de dispositivos de red (Mikrotik, TP-Link, Cisco, Unifi, Huawei)",
+    "Routers TP-Link",
+    "Access Points Unifi",
     "Segmentación de redes",
     "Protocolos SNMP e IPv6",
     "Administración remota (Telnet, SSH, VPN)",
+    "Instalación de infraestructura de red",
     "Montaje y gestión de componentes en rack"
   ],
   monitoring: [
     "Zabbix", "Netbox", "U2000", "Unikit", "Int6",
+    "SmartPSS Admin (DVR, NVR, XVR)",
     "Circuito cerrado (Hikvision, NVR)"
   ],
   servers: [
     "Proxmox", "VMware", "Pfsense",
+    "Asustor (almacenamiento en la nube)",
+    "Servidores locales",
     "Gestión de máquinas virtuales",
     "Active Directory (Zential)"
+  ],
+  erp: [
+    "Dolphin ERP",
+    "Datapar MRP",
+    "Gestión de servicios Datapar",
+    "Administración empresarial",
+    "Gestión de dominios corporativos"
   ],
   development: [
     "React", "Angular", "Flutter",
     "Python", "PHP", "JavaScript (ES6+)", "Dart",
-    "JSON", "XML", "APIs REST"
+    "JSON", "XML", "APIs REST",
+    "Desarrollo de páginas web corporativas"
   ],
   databases: [
     "MongoDB", "MySQL", "PostgreSQL", "Firebase", "Cassandra"
   ],
   devops: [
     "Netlify", "Vercel", "AWS", "Heroku", "Cloudflare",
+    "cPanel (hosting y correos empresariales)",
     "CI/CD", "Git", "GitHub"
   ],
   tools: [
     "Visual Studio Code", "Visual Studio", "Google Colab",
-    "Power BI", "Arduino", "n8n"
+    "Power BI", "Arduino", "n8n",
+    "Soporte técnico de dispositivos",
+    "Configuración e instalación de impresoras"
   ]
 };
 

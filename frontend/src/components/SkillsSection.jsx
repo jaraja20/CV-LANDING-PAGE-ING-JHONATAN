@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { skills, certifications } from '../data/cvData';
 import { 
-  Network, Monitor, Server, Code, Database, Cloud, Wrench, Award, Brain
+  Network, Monitor, Server, Code, Database, Cloud, Wrench, Award, Brain, Boxes
 } from 'lucide-react';
 
 const SkillCard = ({ category, index }) => {
@@ -109,6 +109,13 @@ const SkillsSection = () => {
       icon: Server, 
       color: '#10B981',
       skills: skills.servers 
+    },
+    { 
+      id: 'erp', 
+      title: 'ERP & Sistemas Empresariales', 
+      icon: Boxes, 
+      color: '#E30613',
+      skills: skills.erp 
     },
     { 
       id: 'development', 
