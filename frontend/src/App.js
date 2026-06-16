@@ -7,6 +7,8 @@ import Hero from "./components/Hero";
 import ExperienceSection from "./components/ExperienceSection";
 import EducationSection from "./components/EducationSection";
 import SkillsSection from "./components/SkillsSection";
+import DevelopmentFieldsSection from "./components/DevelopmentFieldsSection";
+import ProjectsSection from "./components/ProjectsSection";
 import ContactBubble from "./components/ContactBubble";
 import ContactSidebar from "./components/ContactSidebar";
 
@@ -14,6 +16,8 @@ import ContactSidebar from "./components/ContactSidebar";
 const sectionColors = {
   formacion: '#2E7D32', // Green from UNE
   experiencia: '#0055A4', // Blue from Neotelecom
+  desarrollo: '#6366F1', // Indigo for development
+  proyectos: '#EC4899', // Pink for projects
   habilidades: '#8B5CF6', // Purple for skills
 };
 
@@ -21,6 +25,7 @@ function App() {
   const [activeSection, setActiveSection] = useState("experiencia");
   const [selectedExpId, setSelectedExpId] = useState(null);
   const [selectedEduId, setSelectedEduId] = useState(null);
+  const [selectedDevId, setSelectedDevId] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const accentColor = useMemo(() => {
@@ -43,6 +48,15 @@ function App() {
             setSelectedId={setSelectedExpId} 
           />
         );
+      case "desarrollo":
+        return (
+          <DevelopmentFieldsSection 
+            selectedId={selectedDevId} 
+            setSelectedId={setSelectedDevId} 
+          />
+        );
+      case "proyectos":
+        return <ProjectsSection />;
       case "habilidades":
         return <SkillsSection />;
       default:
@@ -69,6 +83,7 @@ function App() {
               setActiveSection(section);
               setSelectedExpId(null);
               setSelectedEduId(null);
+              setSelectedDevId(null);
             }} 
           />
 
